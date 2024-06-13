@@ -9,7 +9,6 @@ class SpSpider(scrapy.Spider):
 
     def parse(self, response):
         for product in response.css('div.card'):
-            print(product.css('a.card__title::text').get())
             yield {
                 'name': product.css('a.card__title::text').get(),
                 'link': response.urljoin(product.css('a.card__img::attr(href)').get()),
